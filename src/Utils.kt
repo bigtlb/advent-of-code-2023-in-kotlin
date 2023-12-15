@@ -74,3 +74,8 @@ fun <T> Iterable<T>.permutations(length: Int? = null): Sequence<List<T>> =
 fun <A, B>List<A>.pmap(f: suspend (A) -> B): List<B> = runBlocking {
     map { async(Dispatchers.Default) { f(it) } }.awaitAll()
 }
+
+val Set<Pair<Int,Int>>.bounds: Pair<Int,Int>
+    get() = this.maxOf{ it.first} to this.maxOf{it.second}
+
+
